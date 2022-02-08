@@ -22,7 +22,7 @@ class Customer:
 
 def add_customer():
     # validate that the input ID is unique
-    global _id
+    print()
     _id = input("Please enter the customer ID you want to add: ")
     with open('customers.csv', 'r') as customers_file:
         customers = csv.reader(customers_file)
@@ -36,7 +36,7 @@ def add_customer():
                 return add_customer()
     name = input("Enter new customer's name: ")
     address = input("Please enter the customer's address: ")
-    # create new product object
+    # create new customer object
     Customer(_id, name, address)
 
     # add customer to customers csv file
@@ -54,6 +54,7 @@ def add_customer():
 
 
 def view_customers():
+    print()
     with open('customers.csv', 'r') as customers_file:
         customers = csv.reader(customers_file)
         for customer in customers:
@@ -71,16 +72,17 @@ def update_customer_file(updated_customers_list):
 
 
 def update_customer_records():
+    print()
     customer_id_to_update = input('Enter the ID of the customer to update: ')
     customer_ids_list = []
     with open('customers.csv', 'r') as customers_file:
         customers = csv.reader(customers_file)
         for customer in customers:
             customer_ids_list.append(customer[0])
-    print(customer_ids_list)
+    # print(customer_ids_list)
     customer_id = customer_ids_list.count(customer_id_to_update)
     if customer_id == 0:
-        print('Invalid ID')
+        print('Invalid customer ID')
         print()
         update_customer_records()
 
@@ -99,6 +101,8 @@ def update_customer_records():
 
         # update customer's records/details
         print(customer_to_update)
+
+        print()
         name = input("Update customer's name: ")
         customer_to_update[0][1] = name
         address = input("Enter customer's address: ")
@@ -127,8 +131,7 @@ def remove_customer():
         print('customer has been deleted')
 
     '''
-    @classmethod
-    def check_customer(cls):
+    def check_customer():
         input_id = input("Enter customer's id: ")
         with open('customers.csv', 'r') as customers_file:
             customers = csv.reader(customers_file)
@@ -143,6 +146,7 @@ def remove_customer():
                     print('Invalid id. Enter new id')
                     return cls.check_customer()
     '''
+
 
 # add_customer()
 # view_customers()

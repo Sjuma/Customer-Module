@@ -21,9 +21,10 @@ class Product:
 
 
 def add_product(quantity=None):
-    print('Add a product')
     print()
-    _id = input('Enter product id: ')
+    print('Add a new product')
+    print()
+    _id = input('Enter the product id: ')
     with open('products.csv', 'r') as products_file:
         products = csv.reader(products_file)
         products_list = list(products)
@@ -65,6 +66,7 @@ def update_products_file(updated_products_list):
 
 def update_product_records():
     # validate the existence of a product using input ID
+    print()
     product_id_to_update = input('Enter the ID of the product to be updated: ')
     product_ids_list = []
     with open('products.csv', 'r') as products_file:
@@ -89,6 +91,7 @@ def update_product_records():
                 elif product[0] != product_id_to_update:
                     updated_products_list.append(product)
         update_products_file(updated_products_list)
+        print()
 
         # update product's records/details
         print(product_to_update)
@@ -110,6 +113,9 @@ def update_product_records():
 # view all product details
 
 def view_products():
+    print()
+    print('ALl products in the system')
+    print()
     with open('products.csv', 'r') as products_file:
         products = csv.reader(products_file)
         for product in products:
@@ -119,11 +125,12 @@ def view_products():
 # delete a product from products csv file
 
 def remove_product():
+    print()
     with open('products.csv', 'r+') as products_file:
         products = products_file.readlines()
         products_file.seek(0)
 
-        input_id = input('Enter the ID of the product to be deleted ')
+        input_id = input('Enter the ID of the product to be deleted: ')
         for product in products:
             if input_id not in product.split(',')[0]:
                 products_file.write(product)

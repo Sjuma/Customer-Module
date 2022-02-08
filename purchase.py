@@ -8,7 +8,7 @@ product_purchases = []
 
 # check if the customer exists in the system
 def find_customer():
-    # global _id
+    print()
     _id = input('Enter the customer ID: ')
     purchasing_customer_id = []
     with open('customers.csv', 'r') as customers_file:
@@ -34,6 +34,7 @@ def find_customer():
 
 def product_purchase():
     product_to_purchase_id = []
+    print()
     input_product_id = input('Enter product ID: ')
     with open('products.csv', 'r') as products_file:
         products = csv.reader(products_file)
@@ -53,15 +54,16 @@ def product_purchase():
         prod_name = purchased_products[0][1]
         prod_quantity = int(purchased_products[0][2])
         prod_price = float(purchased_products[0][3])
-
+        print()
         print('product: ' + prod_name)
         print('Quantity in stock: ' + str(prod_quantity))
         print('Unit price: ' + str(prod_price))
 
+    print()
     purchase_quantity = int(input('Enter the purchase quantity: '))
 
     # compare available stock to purchase quantity
-    print('checking product quantity')
+    # print('checking product quantity')
     if purchase_quantity > prod_quantity:
         print('In stock ' + str(prod_quantity))
         product_purchase()
@@ -83,15 +85,12 @@ def product_purchase():
             complete_purchase()
 
 
-# product_purchase()
-
-
 def complete_purchase():
     total_cost = 0
     for purchase in product_purchases:
         total_cost += purchase[4]
     print('Total purchase cost: ' + str(total_cost))
-
+    print()
     payment_amount = int(input("Enter the customer's payment: "))
 
     if payment_amount < total_cost:
@@ -101,7 +100,7 @@ def complete_purchase():
                                     1. Give a different amount
                                     2. Terminate sell 
                                 ''')
-        print('resubmitting payment')
+        print('Resubmitting payment')
         if option == '1':
             complete_purchase()
         elif option == '2':
@@ -137,16 +136,17 @@ def update_stock():
         product_name = purchased_prods[0][1]
         # checking prod quantity 1
         prod_quantity = int(purchased_prods[0][2])
-        print(prod_quantity)  # checking prod quantity 2
-        print('purchased quantity' + str(quantity))
+        # print(prod_quantity)  # checking prod quantity 2
+        # print('purchased quantity' + str(quantity))
         purchased_prods[0][2] = prod_quantity - quantity
-        print(purchased_prods)  # checking prod quantity 3
+        # print(purchased_prods)  # checking prod quantity 3
         new_stock_quantity = purchased_prods[0][2]
         price = purchased_prods[0][3]
         with open('products.csv', 'a', newline='') as file:
             writer = csv.writer(file)
             for prod in purchased_prods:
                 writer.writerow([product_id, product_name, new_stock_quantity, price])
+        print()
         print('completed updating stock')
 
 
