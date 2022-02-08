@@ -52,6 +52,7 @@ def add_customer():
 
     # list all th customers in the system
 
+
 def view_customers():
     with open('customers.csv', 'r') as customers_file:
         customers = csv.reader(customers_file)
@@ -60,12 +61,14 @@ def view_customers():
 
     # Update customers file
 
+
 def update_customer_file(updated_customers_list):
     with open('customers.csv', 'w', newline='') as customers_file:
         writer = csv.writer(customers_file)
         writer.writerows(updated_customers_list)
 
     # process user input and update customer records
+
 
 def update_customer_records():
     customer_id_to_update = input('Enter the ID of the customer to update: ')
@@ -110,6 +113,7 @@ def update_customer_records():
 
     # delete customer details after receiving user id
 
+
 def remove_customer():
     with open('customers.csv', 'r+') as customers_file:
         lines = customers_file.readlines()
@@ -139,7 +143,6 @@ def remove_customer():
                     print('Invalid id. Enter new id')
                     return cls.check_customer()
     '''
-
 
 # add_customer()
 # view_customers()

@@ -1,42 +1,84 @@
 from customer import *
 from product import *
 import csv
-import os
 
 
 def main_menu():
-    while True:
-        print('''
-        Welcome come to retail CRM system
-        
-        CUSTOMER OPERATIONS
-        
-        1.Add a customer
-        2.View customers 
-        3.Update a customer record
-        4. Delete a customer
-        0. exist
-        ''')
+    print('starting')
 
-        operation = input('Enter select operations to perform: ')
+    main_menu_operation = 0
+    while main_menu_operation != '0':
+        main_menu_operation = input(''''
+                                        WELCOME: MAIN MENU
+                                                                                                                        
+                                        1.Customer operations 
+                                        2.Product operations 
+                                        3.Purchase operations
+                                        0. exist
+                                        
+                                        Select operations to perform:
+                                        
+                                        ''')
 
-        if operation == '1':
-            print('Add a new customer')
-            Customer.add_customer()
-        elif operation == '2':
-            print('View Customers')
-            Customer.view_customers()
-        elif operation == '3':
-            print("Update a Customer's")
-            Customer.update_customer_records()
-        elif operation == '4':
-            print("Delete a Customer's")
-            Customer.remove_customer()
-        elif operation == '0':
-            print('Exit the program')
-            break
-        else:
-            print('Enter a valid choice to run an operation ')
+        while main_menu_operation == '1':
+            print()
+            customer_operations = input('''
+            
+                    CUSTOMER OPERATIONS
+                    
+                    1.Add customer
+                    2.View all customers  
+                    3.Update customer records
+                    4.Delete a customer
+                    0. exist 
+                    
+                    Select customer operation:   
+                          
+                    ''')
+
+            if customer_operations == '1':
+                add_customer()
+            elif customer_operations == '2':
+                view_customers()
+            elif customer_operations == '3':
+                update_customer_records()
+            elif customer_operations == '4':
+                remove_customer()
+            elif customer_operations == '0':
+                print('Back to main Menu')
+                break
+            else:
+                print('Invalid input. Please try again')
+
+        while main_menu_operation == '2':
+            print()
+            product_operations = input('''
+            
+                    Product operations
+                    
+                    1.Add product
+                    2.View all products  
+                    3.Update product records
+                    4.Delete a product
+                    0. exist   
+                    
+                    Select customer operation
+                ''')
+            if product_operations == '1':
+                add_product()
+            elif product_operations == '2':
+                view_products()
+            elif product_operations == '3':
+                update_product_records()
+            elif product_operations == '4':
+                remove_product()
+            elif product_operations == '0':
+                print('Back to main Menu')
+                break
 
 
-# main_menu()
+
+
+        #else:
+            print('Invalid input. Please try again')
+main_menu()
